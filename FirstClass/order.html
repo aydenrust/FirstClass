@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+    <link href="home.css" rel="stylesheet" />
+    <script src="order.js"></script>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+      <h1>Welcome {User}</h1>
+    <div class="container">
+      <form action="cart.html">
+            <div class="form-group">
+                    <label for="size">Select School</label>
+                    <select class="form-control field" id="school">
+                      <option value="TCS">TCS</option>
+                      <option value="CCS">CCS</option>
+                      <option value="GCA">GCA</option>
+                    </select>
+                  </div>
+        <div class="form-group">
+          <label for="size">Select Size</label>
+          <select class="form-control field" id="size">
+            <option value="8.5x11">8.5x11</option>
+            <option value="7x9">7x9</option>
+            <option value="5x8">5x8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Select Age</label>
+          <select class="form-control field" id="age">
+            <option value="primary" id="primary" class="opt">Primary</option>
+            <option value="junior" id="junior" class="opt">Junior</option>
+            <option value="intermediate" id="intermediate" class="opt" style="display:none">Intermediate</option>
+            <option value="high" id="high" class="opt" style="display:none">High</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="lang">Select Language</label>
+          <select class="form-control field" id="lang">
+            <option value="english" id="english" class="opt">English</option>
+            <option value="french" id="french" class="opt">French</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" min="1" class="form-control field check" value="1" id="quantity">
+        </div> 
+        <div class="form-check">
+                <input class="form-check-input check checkBox" type="checkbox" value="" id="ruler">
+                <label class="form-check-label" for="ruler">
+                  Snap in Ruler - $0.25
+                </label>
+              </div>
+              <div class="form-check">
+                    <input class="form-check-input check checkBox" type="checkbox" value="" id="pocket">
+                    <label class="form-check-label" for="pocket">
+                      Plastic Pocket - $0.60
+                    </label>
+                  </div>
+                  <div class="form-group">
+                        <label for="size">Select Cover</label>
+                        <select class="form-control field" id="cover">
+                          <option value="Reach">Reach</option>
+                          <option value="Believe">Believe</option>
+                        </select>
+                      </div>
+        <div class="form-group">Total: $<a id="total">3.94</a></div>
+        <button type="button" class="btn btn-primary" id="addToCart">Add to Cart</button>
+        <button type="submit" class="btn btn-primary">View Cart</button>
+      </form>
+
+            <div class="toast success" style="position: absolute; top:0; right: 0;">
+              <div class="toast-header">
+                <strong class="mr-auto">Success</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="toast-body">
+                Successfully Added to Cart
+              </div>
+            </div>
+   
+  </body>
+</html>
