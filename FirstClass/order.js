@@ -1,4 +1,7 @@
 $(function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  console.log(urlParams.get('username'));
+  $("#user").html(urlParams.get('username'));
   var per = 3.94;
 
   $("#size").change(function() {
