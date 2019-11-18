@@ -1,8 +1,15 @@
 $(function() {
   var urlParams = new URLSearchParams(window.location.search);
-  console.log(urlParams.get('username'));
-  $("#user").html(urlParams.get('username'));
+  console.log(urlParams.get("username"));
+  $("#user").html(urlParams.get("username"));
   var per = 3.94;
+
+  $(".big").css("opacity", "0.4");
+  $(".med").css("opacity", "0.4");
+  $(".small").css("opacity", "0.4");
+  $(".coverSelect").attr("disabled", true);
+  $(".bubig").removeAttr("disabled");
+  $(".big").css("opacity", "1");
 
   $("#size").change(function() {
     //setting extra pages dropdowns to disabled by default
@@ -20,15 +27,25 @@ $(function() {
     $(".opt").show();
     //making it so no options have the selected attribute
     $(".opt").removeAttr("selected");
+    $(".big").css("opacity", "0.4");
+    $(".med").css("opacity", "0.4");
+    $(".small").css("opacity", "0.4");
+    $(".coverSelect").attr("disabled", true);
+
     //unchecking the extra pages option
     $("#xtrapgs").prop("checked", false);
     if ($(this).val() == "8.5x11") {
+      $(".bubig").removeAttr("disabled");
+      $(".big").css("opacity", "1");
       $("#boardpgs").hide();
       $("#pgsH").hide();
       $("#intermediate").hide();
       $("#high").hide();
       $("#primary").attr("selected", "");
     } else if ($(this).val() == "7x9") {
+      console.log("med");
+      $(".bumed").removeAttr("disabled");
+      $(".med").css("opacity", "1");
       $("#boardpgs").hide();
       $("#pgsH").hide();
       $("#primary").hide();
@@ -36,6 +53,8 @@ $(function() {
       $("#high").hide();
       $("#intermediate").attr("selected", "");
     } else if ($(this).val() == "5x8") {
+      $(".busmall").removeAttr("disabled");
+      $(".small").css("opacity", "1");
       $("#boardpgs").show();
       $("#board").prop("checked", true);
       $("#pgsJ").hide();
@@ -45,6 +64,11 @@ $(function() {
       $("#french").hide();
       $("#english").attr("selected", "");
       $("#high").attr("selected", "");
+    }
+  });
+
+  $("#customCover").click(function() {
+    if ($("#customCover").prop("checked")) {
     }
   });
 
@@ -81,7 +105,6 @@ $(function() {
   });
 
   $("#addToCart").click(function() {
-    console.log("works");
     $(".toast").toast({ delay: 2000 });
     $(".toast").toast("show");
   });
@@ -125,13 +148,47 @@ function showSnack() {
   x.className = "show";
 
   // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  setTimeout(function() {
+    x.className = x.className.replace("show", "");
+  }, 3000);
+}
+
+function addToCart() {
+  var size = $("#size").val();
+  var age = $("#age").val();
+  var lang = $("#lang").val();
+  var quantity = $("#quantity").val();
+  var ruler = false;
+  var pocket = false;
+  var pgs = 0;
+  if ($("#ruler").is(":checked")) {
+    ruler = true;
+  }
+  if ($("#pocket").is(":checked")) {
+    pocket = true;
+  }
+  if ($("#xtrapgs").is(":checked")) {
+    if ($("#pgsJ").is(":visible")) {
+      pgs = parseFloat($("#pgsJ").val());
+    } else {
+      pgs = parseFloat($("#pgsH").val());
+    }
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "addCart.php",
+    data: {
+      data: name
+    }
+  });
 }
 
 function modalCheck() {
-if($("#xtrapgs").is(":checked")){
-showSnack();
-}else{
-  $('#confirmModal').modal('show');
-}
+  if ($("#pocket").is(":checked")) {
+    showSnack();
+    addToCart();
+  } else {
+    $("#confirmModal").modal("show");
+  }
 }
