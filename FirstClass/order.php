@@ -12,19 +12,47 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 </head>
 
 <body>
   <a href="index.php">Logout</a>
   <div class="container">
-    <h1 style="color: cornflowerblue;">Welcome <?php echo $_POST["username"]; ?></h1>
-    <h2>Example School</h2>
-    <h3>
-      123 Fake Street<br />
-      Calgary, Alberta, A1B 2C3 <br />
-      403-123-4567 <br />
-      812-112-5123
-    </h3>
+    <div class="row">
+      <div class="col">
+        <h1 style="color: cornflowerblue;">
+          Welcome
+          <?php echo $_POST["username"]; ?>
+        </h1>
+        <h2>Example School</h2>
+        <h3>
+          123 Fake Street<br />
+          Calgary, Alberta, A1B 2C3 <br />
+          403-123-4567 <br />
+          812-112-5123
+        </h3>
+      </div>
+      <div class="col">
+        <a id="kindImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_kindergarten-planners_content/planners/bigbox/1_FIRST_KG_WEEK.jpg" data-fancybox data-caption="">
+          <img src="http://www.firstclassplanners.ca/sg_kindergarten-planners_content/planners/bigbox/1_FIRST_KG_WEEK.jpg" alt="" style="width:100%">
+        </a>
+        <a id="primaryImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_primary-planners_content/planners/bigbox/2_-FIRST_PRI_WEEK.jpg" data-fancybox data-caption="" style="display:none">
+          <img src="http://www.firstclassplanners.ca/sg_primary-planners_content/planners/bigbox/2_-FIRST_PRI_WEEK.jpg" alt="" style="width:100%">
+        </a>
+        <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_elementary-planners_content/planners/bigbox/3_-FIRST_ELEM_WEEK.jpg" data-fancybox data-caption="" style="display:none">
+          <img src="http://www.firstclassplanners.ca/sg_elementary-planners_content/planners/bigbox/3_-FIRST_ELEM_WEEK.jpg" alt="" style="width:100%">
+        </a>
+        <a id="intImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_middle-planners_content/planners/bigbox/4_-FIRST_MID_WEEK.jpg" data-fancybox data-caption="" style="display:none">
+          <img src="http://www.firstclassplanners.ca/sg_middle-planners_content/planners/bigbox/4_-FIRST_MID_WEEK.jpg" alt="" style="width:100%">
+        </a>
+        <a id="highImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_high-planners_content/planners/bigbox/5_-FIRST_HIGH_WEEK.jpg" data-fancybox data-caption="" style="display:none">
+          <img src="http://www.firstclassplanners.ca/sg_high-planners_content/planners/bigbox/5_-FIRST_HIGH_WEEK.jpg" alt="" style="width:100%">
+        </a>
+
+      </div>
+
+    </div>
   </div>
   <div class="container">
     <form action="cart.php" method="post">
@@ -37,22 +65,24 @@
                     </select>
                   </div> -->
       <div class="form-group">
-        <label for="size">Select Size</label>
-        <select class="form-control field" id="size">
-          <option value="8.5x11">8.5x11 - inc. 16 board pages & 8 School Pages</option>
-          <option value="7x9">7x9  - inc. 16 board pages & 8 School Pages</option>
-          <option value="5x8">5x8 - inc. 32 board and school pages</option>
+        <label for="age">Planner Type</label>
+        <select class="form-control field" id="age">
+          <option value="kind" id="kind">Kindergarten</option>
+          <option value="primary" id="primary">Primary</option>
+          <option value="junior" id="junior">Junior</option>
+          <option value="intermediate" id="intermediate" class="opt">Intermediate</option>
+          <option value="high" id="high" class="opt">High</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="age">Select Age</label>
-        <select class="form-control field" id="age">
-          <option value="primary" id="primary" class="opt">Primary</option>
-          <option value="junior" id="junior" class="opt">Junior</option>
-          <option value="intermediate" id="intermediate" class="opt" style="display:none">Intermediate</option>
-          <option value="high" id="high" class="opt" style="display:none">High</option>
+        <label for="size">Select Size</label>
+        <select class="form-control field" id="size">
+          <option value="8.5x11" id="85x11" class="opt">8.5x11 - inc. 16 board pages & 8 School Pages</option>
+          <option value="7x9" id="7x9" class="opt">7x9 - inc. 16 board pages & 8 School Pages</option>
+          <option value="5x8" id="5x8" class="opt">5x8 - inc. 32 pages of board and school specific pages</option>
         </select>
       </div>
+
       <div class="form-group">
         <label for="lang">Select Language</label>
         <select class="form-control field" id="lang">
@@ -71,9 +101,9 @@
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input check checkBox" type="checkbox" value="0.60" id="pocket" />
+        <input class="form-check-input check checkBox" type="checkbox" value="0.65" id="pocket" />
         <label class="form-check-label" for="pocket">
-          Plastic Pocket - $0.60
+          Plastic Pocket - $0.65
         </label>
       </div>
       <div class="form-check" id="boardpgs" style="display:none">
@@ -89,11 +119,11 @@
             Additional School Pages
           </label>
         </div>
-        <select class="form-control field pgs opt" id="pgsJ" disabled>
+        <select class="form-control field pgs" id="pgsJ" disabled>
           <option value="0.40" id="8pgsJ" class="opt">8 Additional School Pages - $0.40</option>
           <option value="0.60" id="16pgsJ" class="opt">16 Additional School Pages - $0.60</option>
         </select>
-        <select class="form-control field pgs opt" id="pgsH" style="display:none" disabled>
+        <select class="form-control field pgs" id="pgsH" style="display:none" disabled>
           <option value="0.20" id="8pgsH" class="opt">8 Additional School Pages - $0.20</option>
           <option value="0.25" id="16pgsH" class="opt">16 Additional School Pages - $0.25</option>
           <option value="0.30" id="24pgsH" class="opt">24 Additional School Pages - $0.30</option>
@@ -109,93 +139,129 @@
         <div class="container">
           <h2>Select Cover</h2>
           <div class="form-check">
-              <input class="form-check-input check" type="radio" value="" id="customCover" name="test"/>
-              <label class="form-check-label" for="customCover">
-                Custom Cover - $275 per order
-              </label>
-            </div>
+            <input class="form-check-input check" type="radio" value="" id="customCover" name="test" />
+            <label class="form-check-label" for="customCover">
+              Custom Cover - $275 per order
+            </label>
+          </div>
           <div class="row">
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="small" class="coverSelect bubig" checked />
-                <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ReachForTheStars.jpg" />
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="small" class="coverSelect bubig" checked />
+                  <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ReachForTheStars.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
+                  <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Journey.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+              </div>
               </label>
             </div>
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
-                <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Journey.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
+                  <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Believe.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
-                <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Believe.jpg" />
-              </label>
-            </div>
-            <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
-                <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ExploreDreamDiscover.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
+                  <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ExploreDreamDiscover.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
-                <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/DreamPlanAchieve.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
+                  <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/DreamPlanAchieve.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bubig" />
-                <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/CanadianGeography.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bubig" />
+                  <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/CanadianGeography.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bubig" />
-                <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/2_Stream.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bubig" />
+                  <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/2_Stream.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bubig" />
-                <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/1_Reading.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bubig" />
+                  <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/1_Reading.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bubig" />
-                <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/08_Public-P_Activities.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bubig" />
+                  <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/08_Public-P_Activities.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
-                <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/07_Public-DoIt.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
+                  <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/07_Public-DoIt.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
-                <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/06_Public-P_Influence.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
+                  <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/06_Public-P_Influence.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
             <div class="col-3">
-              <label>
-                <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
-                <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/05_Public-P_BeKind.jpg" />
-              </label>
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
+                  <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/05_Public-P_BeKind.jpg" />
+                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                </label>
+              </div>
             </div>
           </div>
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-3">
               <label>
                 <input type="radio" name="test" value="big" class="coverSelect bumed" />
@@ -220,9 +286,9 @@
                 <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/catholiccovers/thumbnail/FruitOfTheSpirit.jpg" />
               </label>
             </div>
-          </div>
+          </div> -->
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col">
               <label>
                 <input type="radio" name="test" value="big" class="coverSelect bubig" />
@@ -253,7 +319,7 @@
                 <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/catholiccovers/thumbnail/01_Faith-P_Mountains.jpg" />
               </label>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="form-group">Total: $<a id="total">3.94</a></div>

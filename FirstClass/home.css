@@ -322,3 +322,49 @@ label{
 .cover{
   width: 100%;
 }
+
+.image-container { 
+  position: relative; 
+  width: 100%; /* for IE 6 */
+}
+
+.overlay { 
+  position: absolute; 
+  top: 200px; 
+  left: 0; 
+  width: 100%; 
+}
+
+.overlay span { 
+  color: white; 
+  font: bold 12px/33px Helvetica, Sans-Serif; 
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px; 
+}
+
+.overlay span.spacer {
+  padding:0 5px;
+}
+
+.hide{
+  position: absolute; 
+  top: 200px; 
+  left: 0; 
+  width: 100%; 
+  font-size: 0;
+  background: transparent;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+}
+
+.bottom-right-hidden{
+  font-size: 0;
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+}

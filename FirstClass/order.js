@@ -1,8 +1,8 @@
 $(function() {
-  var urlParams = new URLSearchParams(window.location.search);
-  console.log(urlParams.get("username"));
-  $("#user").html(urlParams.get("username"));
   var per = 3.94;
+
+  $("#7x9").hide();
+  $("#5x8").hide();
 
   $(".big").css("opacity", "0.4");
   $(".med").css("opacity", "0.4");
@@ -10,8 +10,67 @@ $(function() {
   $(".coverSelect").attr("disabled", true);
   $(".bubig").removeAttr("disabled");
   $(".big").css("opacity", "1");
+  $(".big")
+    .next()
+    .attr("class", "bottom-right-hidden");
+
+  $("#age").change(function() {
+    $(".plannerImg").hide();
+    $(".opt").show();
+    $(".pgs").show();
+
+    $(".opt").removeAttr("selected");
+
+    $(".pgs").attr("disabled", "");
+    //checking if the total needs to be adjusted when the size changes
+    if ($("#xtrapgs").is(":checked")) {
+      if ($("#pgsJ").is(":visible")) {
+        per = per - parseFloat($("#pgsJ").val());
+      } else {
+        per = per - parseFloat($("#pgsH").val());
+      }
+      updateTotal(per);
+    }
+
+    if ($(this).val() == "kind") {
+      $("#kindImg").show();
+      $("#pgsH").hide();
+      $("#7x9").hide();
+      $("#5x8").hide();
+      $("#85x11").attr("selected", "");
+      $("#size").change();
+    } else if ($(this).val() == "primary") {
+      $("#primaryImg").show();
+      $("#pgsH").hide();
+      $("#7x9").hide();
+      $("#5x8").hide();
+      $("#85x11").attr("selected", "");
+      $("#size").change();
+    } else if ($(this).val() == "intermediate") {
+      $("#intImg").show();
+      $("#pgsH").hide();
+      $("#5x8").hide();
+      $("#85x11").attr("selected", "");
+      $("#size").change();
+    } else if ($(this).val() == "junior") {
+      $("#juniorImg").show();
+      $("#pgsH").hide();
+      $("#5x8").hide();
+      $("#85x11").attr("selected", "");
+      $("#size").change();
+    } else if ($(this).val() == "high") {
+      $("#highImg").show();
+      $("#boardpgs").show();
+      $("#board").prop("checked", true);
+      $("#pgsJ").hide();
+      $("#85x11").hide();
+      $("#7x9").attr("selected", "");
+      $("#size").change();
+    }
+  });
 
   $("#size").change(function() {
+    // $(".pgs").show();
     //setting extra pages dropdowns to disabled by default
     $(".pgs").attr("disabled", "");
     //checking if the total needs to be adjusted when the size changes
@@ -24,46 +83,36 @@ $(function() {
       updateTotal(per);
     }
     //showing all dropdown options by default
-    $(".opt").show();
+    //$(".opt").show();
     //making it so no options have the selected attribute
-    $(".opt").removeAttr("selected");
-    $(".big").css("opacity", "0.4");
-    $(".med").css("opacity", "0.4");
-    $(".small").css("opacity", "0.4");
+    //$(".opt").removeAttr("selected");
+    $(".big").css("opacity", "0.3");
+    $(".med").css("opacity", "0.3");
+    $(".small").css("opacity", "0.3");
     $(".coverSelect").attr("disabled", true);
-
+    $(".cover")
+      .next()
+      .attr("class", "bottom-right");
     //unchecking the extra pages option
     $("#xtrapgs").prop("checked", false);
     if ($(this).val() == "8.5x11") {
       $(".bubig").removeAttr("disabled");
       $(".big").css("opacity", "1");
-      $("#boardpgs").hide();
-      $("#pgsH").hide();
-      $("#intermediate").hide();
-      $("#high").hide();
-      $("#primary").attr("selected", "");
+      $(".big")
+        .next()
+        .attr("class", "bottom-right-hidden");
     } else if ($(this).val() == "7x9") {
-      console.log("med");
       $(".bumed").removeAttr("disabled");
       $(".med").css("opacity", "1");
-      $("#boardpgs").hide();
-      $("#pgsH").hide();
-      $("#primary").hide();
-      $("#junior").hide();
-      $("#high").hide();
-      $("#intermediate").attr("selected", "");
+      $(".med")
+        .next()
+        .attr("class", "bottom-right-hidden");
     } else if ($(this).val() == "5x8") {
       $(".busmall").removeAttr("disabled");
       $(".small").css("opacity", "1");
-      $("#boardpgs").show();
-      $("#board").prop("checked", true);
-      $("#pgsJ").hide();
-      $("#primary").hide();
-      $("#junior").hide();
-      $("#intermediate").hide();
-      $("#french").hide();
-      $("#english").attr("selected", "");
-      $("#high").attr("selected", "");
+      $(".small")
+        .next()
+        .attr("class", "bottom-right-hidden");
     }
   });
 

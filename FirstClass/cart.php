@@ -88,7 +88,7 @@
   </div> -->
       
       <button class="checkout">Checkout</button>
-              <a href="order.html"><button type="button" class="btn btn-primary">Add Another Planner</button></a>
+              <a href="order.php"><button type="button" class="btn btn-primary">Add Another Planner</button></a>
 
 </div>
 </body>

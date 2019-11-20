@@ -56,9 +56,6 @@
 						</button>
 					</div>
 					<div class="container-login100-form-btn m-t-32">
-						<a href="createAccount.php">
-								Create Account
-						</a>
 					</div>
 
 				</form>
