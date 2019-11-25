@@ -316,7 +316,7 @@ label{
 
 /* CHECKED STYLES */
 .coverSelect:checked + img {
-  outline: 2px solid #f00;
+  outline: 3px solid #f00;
 }
 
 .cover{
@@ -357,9 +357,14 @@ label{
 }
 
 .bottom-right {
+  font-weight: bold;
+  text-align: center;
   position: absolute;
-  bottom: 8px;
-  left: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 100%;
+  font-size: 20px;
 }
 
 .bottom-right-hidden{
@@ -367,4 +372,8 @@ label{
   position: absolute;
   bottom: 8px;
   left: 8px;
+}
+
+.shadow{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

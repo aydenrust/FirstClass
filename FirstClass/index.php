@@ -31,6 +31,7 @@
 </head>
 
 <body>
+	
 
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
@@ -38,7 +39,7 @@
 				<span class="login100-form-title p-b-41">
 					First Class Peel Portal
 				</span>
-				<form action="order.php" method="post" class="login100-form validate-form p-b-33 p-t-5">
+				<form action="selectSchool.php" method="post" class="login100-form validate-form p-b-33 p-t-5">
 
 					<div class="wrap-input100 validate-input" data-validate="Enter username">
 						<input class="input100" type="text" name="username" placeholder="User name">

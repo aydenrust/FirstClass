@@ -23,33 +23,45 @@
       <div class="col">
         <h1 style="color: cornflowerblue;">
           Welcome
-          <?php echo $_POST["username"]; ?>
+          <?php
+          session_start;
+          $_SESSION["email"] = $_POST["email"];
+          $_SESSION["school"] = $_POST["school"];
+          ?>
         </h1>
-        <h2>Example School</h2>
+        <h2><?php echo $_SESSION["school"] ?></h2>
         <h3>
-          123 Fake Street<br />
-          Calgary, Alberta, A1B 2C3 <br />
-          403-123-4567 <br />
-          812-112-5123
+          <?php
+          $servername = "localhost";
+          $username = "firstcn1_admin";
+          $password = "P@ssw0rd";
+          $dbname = "firstcn1_SchoolList";
+          $conn = mysqli_connect($servername, $username, $password, $dbname);
+          $school = $_SESSION['school'];
+          $sql = "SELECT * FROM Schools where School_name = '$school'";
+          $result = mysqli_query($conn, $sql);
+          $row = mysqli_fetch_assoc($result);
+          echo $row['Address']. "<br>". $row['City']. ", ". $row['Province']. ", ". $row['Country']. ", ". $row['Postal Code']. "<br>". $_POST["email"];
+          ?>
         </h3>
       </div>
-      <div class="col">
-        <a id="kindImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_kindergarten-planners_content/planners/bigbox/1_FIRST_KG_WEEK.jpg" data-fancybox data-caption="">
-          <img src="http://www.firstclassplanners.ca/sg_kindergarten-planners_content/planners/bigbox/1_FIRST_KG_WEEK.jpg" alt="" style="width:100%">
+      <div class="col" style="text-align: center;">
+        <a id="kindImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/kindergarten.jpg" data-fancybox data-caption="">
+          <img class="shadow" src="http://www.firstclassplanners.ca/sg_kindergarten-planners_content/planners/bigbox/1_FIRST_KG_WEEK.jpg" alt="" style="width:100%">
         </a>
         <a id="primaryImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_primary-planners_content/planners/bigbox/2_-FIRST_PRI_WEEK.jpg" data-fancybox data-caption="" style="display:none">
-          <img src="http://www.firstclassplanners.ca/sg_primary-planners_content/planners/bigbox/2_-FIRST_PRI_WEEK.jpg" alt="" style="width:100%">
+          <img class="shadow" src="http://www.firstclassplanners.ca/sg_primary-planners_content/planners/bigbox/2_-FIRST_PRI_WEEK.jpg" alt="" style="width:100%">
         </a>
         <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_elementary-planners_content/planners/bigbox/3_-FIRST_ELEM_WEEK.jpg" data-fancybox data-caption="" style="display:none">
-          <img src="http://www.firstclassplanners.ca/sg_elementary-planners_content/planners/bigbox/3_-FIRST_ELEM_WEEK.jpg" alt="" style="width:100%">
+          <img class="shadow" src="http://www.firstclassplanners.ca/sg_elementary-planners_content/planners/bigbox/3_-FIRST_ELEM_WEEK.jpg" alt="" style="width:100%">
         </a>
         <a id="intImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_middle-planners_content/planners/bigbox/4_-FIRST_MID_WEEK.jpg" data-fancybox data-caption="" style="display:none">
-          <img src="http://www.firstclassplanners.ca/sg_middle-planners_content/planners/bigbox/4_-FIRST_MID_WEEK.jpg" alt="" style="width:100%">
+          <img class="shadow" src="http://www.firstclassplanners.ca/sg_middle-planners_content/planners/bigbox/4_-FIRST_MID_WEEK.jpg" alt="" style="width:100%">
         </a>
         <a id="highImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_high-planners_content/planners/bigbox/5_-FIRST_HIGH_WEEK.jpg" data-fancybox data-caption="" style="display:none">
-          <img src="http://www.firstclassplanners.ca/sg_high-planners_content/planners/bigbox/5_-FIRST_HIGH_WEEK.jpg" alt="" style="width:100%">
+          <img class="shadow" src="http://www.firstclassplanners.ca/sg_high-planners_content/planners/bigbox/5_-FIRST_HIGH_WEEK.jpg" alt="" style="width:100%">
         </a>
-
+        Click to enlarge
       </div>
 
     </div>
@@ -77,9 +89,9 @@
       <div class="form-group">
         <label for="size">Select Size</label>
         <select class="form-control field" id="size">
-          <option value="8.5x11" id="85x11" class="opt">8.5x11 - inc. 16 board pages & 8 School Pages</option>
-          <option value="7x9" id="7x9" class="opt">7x9 - inc. 16 board pages & 8 School Pages</option>
-          <option value="5x8" id="5x8" class="opt">5x8 - inc. 32 pages of board and school specific pages</option>
+          <option value="8.5x11" id="85x11" class="opt">8.5x11 - incl 16 board pages & 8 School Pages</option>
+          <option value="7x9" id="7x9" class="opt">7x9 - incl 16 board pages & 8 School Pages</option>
+          <option value="5x8" id="5x8" class="opt">5x8 - incl 32 pages of board & school specific pages combined</option>
         </select>
       </div>
 
@@ -150,7 +162,7 @@
                 <label>
                   <input type="radio" name="test" value="small" class="coverSelect bubig" checked />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ReachForTheStars.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -159,7 +171,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Journey.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
               </div>
               </label>
             </div>
@@ -168,7 +180,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
                   <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Believe.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -177,7 +189,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ExploreDreamDiscover.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -189,7 +201,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
                   <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/DreamPlanAchieve.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -198,7 +210,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/CanadianGeography.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -207,7 +219,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/2_Stream.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -216,7 +228,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/1_Reading.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -228,7 +240,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/08_Public-P_Activities.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -237,7 +249,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
                   <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/07_Public-DoIt.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -246,7 +258,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/06_Public-P_Influence.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
@@ -255,7 +267,7 @@
                 <label>
                   <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/05_Public-P_BeKind.jpg" />
-                  <div class="bottom-right">This cover is not available<br>In your selected size</div>
+                  <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
             </div>
