@@ -4,12 +4,16 @@ $(function() {
   $("#7x9").hide();
   $("#5x8").hide();
 
-  $(".big").css("opacity", "0.4");
-  $(".med").css("opacity", "0.4");
-  $(".small").css("opacity", "0.4");
+ // $(".big").css("opacity", "0.4");
+  $(".big").addClass("greyed");
+  $(".med").addClass("greyed");
+  $(".small").addClass("greyed");
+ // $(".med").css("opacity", "0.4");
+  //$(".small").css("opacity", "0.4");
   $(".coverSelect").attr("disabled", true);
   $(".bubig").removeAttr("disabled");
-  $(".big").css("opacity", "1");
+  //$(".big").css("opacity", "1");
+  $(".big").removeClass("greyed");
   $(".big")
     .next()
     .attr("class", "bottom-right-hidden");
@@ -32,33 +36,33 @@ $(function() {
       updateTotal(per);
     }
 
-    if ($(this).val() == "kind") {
+    if ($(this).val() == "Kindergarten") {
       $("#kindImg").show();
       $("#pgsH").hide();
       $("#7x9").hide();
       $("#5x8").hide();
       $("#85x11").attr("selected", "");
       $("#size").change();
-    } else if ($(this).val() == "primary") {
+    } else if ($(this).val() == "Primary") {
       $("#primaryImg").show();
       $("#pgsH").hide();
       $("#7x9").hide();
       $("#5x8").hide();
       $("#85x11").attr("selected", "");
       $("#size").change();
-    } else if ($(this).val() == "intermediate") {
+    } else if ($(this).val() == "Intermediate") {
       $("#intImg").show();
       $("#pgsH").hide();
       $("#5x8").hide();
       $("#85x11").attr("selected", "");
       $("#size").change();
-    } else if ($(this).val() == "junior") {
+    } else if ($(this).val() == "Junior") {
       $("#juniorImg").show();
       $("#pgsH").hide();
       $("#5x8").hide();
       $("#85x11").attr("selected", "");
       $("#size").change();
-    } else if ($(this).val() == "high") {
+    } else if ($(this).val() == "High") {
       $("#highImg").show();
       $("#boardpgs").show();
       $("#board").prop("checked", true);
@@ -86,9 +90,12 @@ $(function() {
     //$(".opt").show();
     //making it so no options have the selected attribute
     //$(".opt").removeAttr("selected");
-    $(".big").css("opacity", "0.3");
-    $(".med").css("opacity", "0.3");
-    $(".small").css("opacity", "0.3");
+    $(".big").addClass("greyed");
+    $(".med").addClass("greyed");
+    $(".small").addClass("greyed");
+    //$(".big").css("opacity", "0.3");
+    //$(".med").css("opacity", "0.3");
+    //$(".small").css("opacity", "0.3");
     $(".coverSelect").attr("disabled", true);
     $(".cover")
       .next()
@@ -97,19 +104,22 @@ $(function() {
     $("#xtrapgs").prop("checked", false);
     if ($(this).val() == "8.5x11") {
       $(".bubig").removeAttr("disabled");
-      $(".big").css("opacity", "1");
+      //$(".big").css("opacity", "1");
+      $(".big").removeClass("greyed");
       $(".big")
         .next()
         .attr("class", "bottom-right-hidden");
     } else if ($(this).val() == "7x9") {
       $(".bumed").removeAttr("disabled");
-      $(".med").css("opacity", "1");
+      //$(".med").css("opacity", "1");
+      $(".med").removeClass("greyed");
       $(".med")
         .next()
         .attr("class", "bottom-right-hidden");
     } else if ($(this).val() == "5x8") {
       $(".busmall").removeAttr("disabled");
-      $(".small").css("opacity", "1");
+      //$(".small").css("opacity", "1");
+      $(".small").removeClass("greyed");
       $(".small")
         .next()
         .attr("class", "bottom-right-hidden");
@@ -190,6 +200,7 @@ function updateTotal(per) {
 }
 
 function showSnack() {
+  addToCart();
   // Get the snackbar DIV
   var x = document.getElementById("snackbar");
 
@@ -210,6 +221,8 @@ function addToCart() {
   var ruler = false;
   var pocket = false;
   var pgs = 0;
+  var total = $("#total").html();
+  var cover = $("input[name='cover']:checked").val();
   if ($("#ruler").is(":checked")) {
     ruler = true;
   }
@@ -226,9 +239,17 @@ function addToCart() {
 
   $.ajax({
     type: "POST",
-    url: "addCart.php",
+    url: "addToCart.php",
     data: {
-      data: name
+      size: size,
+      age: age,
+      lang: lang,
+      quantity: quantity,
+      ruler: ruler,
+      pocket: pocket,
+      pgs: pgs,
+      total: total,
+      cover: cover
     }
   });
 }

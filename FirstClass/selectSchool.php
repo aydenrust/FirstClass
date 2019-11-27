@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(($_POST['username'] != "PeelDSB")){
+    header("Location: http://www.firstclassplanners.ca/testing");
+} else if(($_POST['pass'] != "Pe=1D\$b")){
+    header("Location: http://www.firstclassplanners.ca/testing");
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +53,6 @@
                             Select School
                             <select class="form-control" name="school" id="school">
                                 <?php
-                                session_start;
                                 $servername = "localhost";
                                 $username = "firstcn1_admin";
                                 $password = "P@ssw0rd";

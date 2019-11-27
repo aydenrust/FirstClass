@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,9 +27,13 @@
         <h1 style="color: cornflowerblue;">
           Welcome
           <?php
-          session_start;
-          $_SESSION["email"] = $_POST["email"];
-          $_SESSION["school"] = $_POST["school"];
+          if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = array();
+          }
+          if (!isset($_SESSION['email'])) {
+            $_SESSION["email"] = $_POST["email"];
+            $_SESSION["school"] = $_POST["school"];
+          }
           ?>
         </h1>
         <h2><?php echo $_SESSION["school"] ?></h2>
@@ -41,7 +48,7 @@
           $sql = "SELECT * FROM Schools where School_name = '$school'";
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_assoc($result);
-          echo $row['Address']. "<br>". $row['City']. ", ". $row['Province']. ", ". $row['Country']. ", ". $row['Postal Code']. "<br>". $_POST["email"];
+          echo $row['Address'] . "<br>" . $row['City'] . ", " . $row['Province'] . ", " . $row['Country'] . ", " . $row['Postal Code'] . "<br>" . $_SESSION["email"];
           ?>
         </h3>
       </div>
@@ -79,11 +86,11 @@
       <div class="form-group">
         <label for="age">Planner Type</label>
         <select class="form-control field" id="age">
-          <option value="kind" id="kind">Kindergarten</option>
-          <option value="primary" id="primary">Primary</option>
-          <option value="junior" id="junior">Junior</option>
-          <option value="intermediate" id="intermediate" class="opt">Intermediate</option>
-          <option value="high" id="high" class="opt">High</option>
+          <option value="Kindergarten" id="kind">Kindergarten</option>
+          <option value="Primary" id="primary">Primary</option>
+          <option value="Junior" id="junior">Junior</option>
+          <option value="Intermediate" id="intermediate" class="opt">Intermediate</option>
+          <option value="High" id="high" class="opt">High</option>
         </select>
       </div>
       <div class="form-group">
@@ -98,8 +105,8 @@
       <div class="form-group">
         <label for="lang">Select Language</label>
         <select class="form-control field" id="lang">
-          <option value="english" id="english" class="opt">English</option>
-          <option value="french" id="french" class="opt">French</option>
+          <option value="English" id="english" class="opt">English</option>
+          <option value="French" id="french" class="opt">French</option>
         </select>
       </div>
       <div class="form-group">
@@ -151,7 +158,7 @@
         <div class="container">
           <h2>Select Cover</h2>
           <div class="form-check">
-            <input class="form-check-input check" type="radio" value="" id="customCover" name="test" />
+            <input class="form-check-input check" type="radio" value="custom" id="customCover" name="cover" />
             <label class="form-check-label" for="customCover">
               Custom Cover - $275 per order
             </label>
@@ -160,7 +167,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="small" class="coverSelect bubig" checked />
+                  <input type="radio" name="cover" value="reach" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ReachForTheStars.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -169,7 +176,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
+                  <input type="radio" name="cover" value="journey" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Journey.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
               </div>
@@ -178,7 +185,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
+                  <input type="radio" name="cover" value="believe" class="coverSelect bumed busmall" />
                   <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Believe.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -187,7 +194,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
+                  <input type="radio" name="cover" value="discover" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ExploreDreamDiscover.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -199,7 +206,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
+                  <input type="radio" name="cover" value="achieve" class="coverSelect bumed busmall" />
                   <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/DreamPlanAchieve.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -208,7 +215,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bubig" />
+                  <input type="radio" name="cover" value="geography" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/CanadianGeography.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -217,7 +224,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bubig" />
+                  <input type="radio" name="cover" value="stream" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/2_Stream.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -226,7 +233,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bubig" />
+                  <input type="radio" name="cover" value="reading" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/1_Reading.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -238,7 +245,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bubig" />
+                  <input type="radio" name="cover" value="activities" class="coverSelect bubig" />
                   <img class="cover big" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/08_Public-P_Activities.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -247,7 +254,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bumed busmall" />
+                  <input type="radio" name="cover" value="doIt" class="coverSelect bumed busmall" />
                   <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/07_Public-DoIt.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -256,7 +263,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
+                  <input type="radio" name="cover" value="influence" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/06_Public-P_Influence.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
@@ -265,7 +272,7 @@
             <div class="col-3">
               <div class="image-container">
                 <label>
-                  <input type="radio" name="test" value="big" class="coverSelect bubig bumed" />
+                  <input type="radio" name="cover" value="kind" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/05_Public-P_BeKind.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>

@@ -1,5 +1,8 @@
 $(function(){
 
+  $( document ).ready(function(){
+    recalculateCart();
+  })
 
 /* Set rates + misc */
 var taxRate = 0.05;
@@ -73,6 +76,14 @@ function removeItem(removeButton)
 {
   /* Remove row from DOM and recalc cart total */
   var productRow = $(removeButton).parent().parent();
+  var cartKey = productRow.find("#cartKey").val();
+   $.ajax({
+     type: "POST",
+     url: "removeFromCart.php",
+     data: {
+       key: cartKey
+     }
+   });
   productRow.slideUp(fadeTime, function() {
     productRow.remove();
     recalculateCart();
