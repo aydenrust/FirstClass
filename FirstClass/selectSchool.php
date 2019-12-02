@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(($_POST['username'] != "PeelDSB")){
-    header("Location: http://www.firstclassplanners.ca/testing");
+    header("Location: http://www.firstclassplanners.ca/testing/index.php?error");
 } else if(($_POST['pass'] != "Pe=1D\$b")){
-    header("Location: http://www.firstclassplanners.ca/testing");
+    header("Location: http://www.firstclassplanners.ca/testing/index.php?error");
 } 
 ?>
 <!DOCTYPE html>

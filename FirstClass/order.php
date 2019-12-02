@@ -48,26 +48,35 @@ session_start();
           $sql = "SELECT * FROM Schools where School_name = '$school'";
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_assoc($result);
-          echo $row['Address'] . "<br>" . $row['City'] . ", " . $row['Province'] . ", " . $row['Country'] . ", " . $row['Postal Code'] . "<br>" . $_SESSION["email"];
+          echo $row['Address'] . "<br>" . $row['City'] . ", " . $row['Province'] . ", " . $row['Postal Code'] . "<br>" . $_SESSION["email"];
           ?>
         </h3>
       </div>
       <div class="col" style="text-align: center;">
-        <a id="kindImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/kindergarten.jpg" data-fancybox data-caption="">
+        <a id="kindImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/kindWeek.jpg" data-fancybox="kindGal" data-caption="">
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_kindergarten-planners_content/planners/bigbox/1_FIRST_KG_WEEK.jpg" alt="" style="width:100%">
         </a>
-        <a id="primaryImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_primary-planners_content/planners/bigbox/2_-FIRST_PRI_WEEK.jpg" data-fancybox data-caption="" style="display:none">
+        <a id="kindImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/kindMonth.jpg" data-fancybox="kindGal" data-caption=""></a>
+
+        <a id="primaryImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/primWeek.jpg" data-fancybox="primGal" data-caption="" style="display:none">
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_primary-planners_content/planners/bigbox/2_-FIRST_PRI_WEEK.jpg" alt="" style="width:100%">
         </a>
-        <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_elementary-planners_content/planners/bigbox/3_-FIRST_ELEM_WEEK.jpg" data-fancybox data-caption="" style="display:none">
+        <a id="primaryImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/primMonth.jpg" data-fancybox="primGal" data-caption="" style="display:none"></a>
+        
+        <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/elemWeek.jpg" data-fancybo="elemGal" data-caption="" style="display:none">
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_elementary-planners_content/planners/bigbox/3_-FIRST_ELEM_WEEK.jpg" alt="" style="width:100%">
         </a>
-        <a id="intImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_middle-planners_content/planners/bigbox/4_-FIRST_MID_WEEK.jpg" data-fancybox data-caption="" style="display:none">
+        <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/elemMonth.jpg" data-fancybo="elemGal" data-caption="" style="display:none"></a>
+        
+        <a id="intImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/intWeek.jpg" data-fancybox="intGal" data-caption="" style="display:none">
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_middle-planners_content/planners/bigbox/4_-FIRST_MID_WEEK.jpg" alt="" style="width:100%">
         </a>
-        <a id="highImg" class="plannerImg" href="http://www.firstclassplanners.ca/sg_high-planners_content/planners/bigbox/5_-FIRST_HIGH_WEEK.jpg" data-fancybox data-caption="" style="display:none">
+        <a id="intImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/intMonth.jpg" data-fancybox="intGal" data-caption="" style="display:none"></a>
+        
+        <a id="highImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/highWeek.jpg" data-fancybox="highGal" data-caption="" style="display:none">
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_high-planners_content/planners/bigbox/5_-FIRST_HIGH_WEEK.jpg" alt="" style="width:100%">
         </a>
+        <a id="highImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/highMonth.jpg" data-fancybox="highGal" data-caption="" style="display:none"></a>
         Click to enlarge
       </div>
 
@@ -96,9 +105,9 @@ session_start();
       <div class="form-group">
         <label for="size">Select Size</label>
         <select class="form-control field" id="size">
-          <option value="8.5x11" id="85x11" class="opt">8.5x11 - incl 16 board pages & 8 School Pages</option>
-          <option value="7x9" id="7x9" class="opt">7x9 - incl 16 board pages & 8 School Pages</option>
-          <option value="5x8" id="5x8" class="opt">5x8 - incl 32 pages of board & school specific pages combined</option>
+          <option value="8.5x11" id="85x11" class="opt">8.5x11 - includes 16 board pages & 8 school pages</option>
+          <option value="7x9" id="7x9" class="opt">7x9 - includes 16 board pages & 8 school pages</option>
+          <option value="5x8" id="5x8" class="opt">5x8 - includes 32 pages of board & school specific pages combined</option>
         </select>
       </div>
 
@@ -158,13 +167,13 @@ session_start();
         <div class="container">
           <h2>Select Cover</h2>
           <div class="form-check">
-            <input class="form-check-input check" type="radio" value="custom" id="customCover" name="cover" />
+            <input class="form-check-input check" type="radio" value="custom" id="customCover" name="cover" required />
             <label class="form-check-label" for="customCover">
               Custom Cover - $275 per order
             </label>
           </div>
           <div class="row">
-            <div class="col-3">
+            <div class="col">
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="reach" class="coverSelect bubig" />
@@ -172,17 +181,21 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Reach</div>
+              <div class="descSmall">Available in: 8.5”x 11”</div>
             </div>
-            <div class="col-3">
+            <div class="col">
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="journey" class="coverSelect bubig bumed" />
                   <img class="cover big med" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Journey.jpg" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
+                </label>
               </div>
-              </label>
+              <div class="descBig">Journey</div>
+              <div class="descSmall">Available in: 8.5”x 11” and 7"x 9"</div>
             </div>
-            <div class="col-3">
+            <div class="col">
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="believe" class="coverSelect bumed busmall" />
@@ -190,8 +203,10 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Believe</div>
+              <div class="descSmall">Available in: 7"x 9" and 5"x 8" Note: 5"x 8" has no window</div>
             </div>
-            <div class="col-3">
+            <div class="col">
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="discover" class="coverSelect bubig bumed" />
@@ -199,11 +214,24 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Explore</div>
+              <div class="descSmall">Available in: 8.5”x 11” and 7"x 9" Available in French 8.5”x 11” and 7"x 9"</div>
+            </div>
+            <div class="col">
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="cover" value="discoverFrench" class="coverSelect bubig bumed" />
+                  <img class="cover big med" src="http://www.firstclassplanners.ca/testing/images/02_Explore_Dream_Discover-01.png" />
+                  <div class="bottom-right">This cover is not available in your selected size</div>
+                </label>
+              </div>
+              <div class="descBig">Explore French</div>
+              <div class="descSmall">Available in: 8.5”x 11” and 7"x 9" Available in French 8.5”x 11” and 7"x 9"</div>
             </div>
           </div>
 
           <div class="row">
-            <div class="col-3">
+            <div class="col">
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="achieve" class="coverSelect bumed busmall" />
@@ -211,8 +239,21 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Dream</div>
+              <div class="descSmall">Available in: 7”x 9” and 5"x 8" note 5"x 8" has no window</div>
             </div>
-            <div class="col-3">
+            <div class="col">
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="cover" value="doIt" class="coverSelect bumed busmall" />
+                  <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/07_Public-DoIt.jpg" />
+                  <div class="bottom-right">This cover is not available in your selected size</div>
+                </label>
+              </div>
+              <div class="descBig">Do It</div>
+              <div class="descSmall">Available in: 7”x 9” and 5"x 8" note 5"x 8" has no window</div>
+            </div>
+            <div class="col">
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="geography" class="coverSelect bubig" />
@@ -220,8 +261,10 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Geography</div>
+              <div class="descSmall">Available in: 8.5”x 11” Available in French</div>
             </div>
-            <div class="col-3">
+            <div class="col">
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="stream" class="coverSelect bubig" />
@@ -229,8 +272,10 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Stream</div>
+              <div class="descSmall">Available in: 8.5”x 11” Available in French</div>
             </div>
-            <div class="col-3">
+            <div class="col">
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="reading" class="coverSelect bubig" />
@@ -238,6 +283,8 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Reading</div>
+              <div class="descSmall">Available in: 8.5”x 11” Available in French</div>
             </div>
           </div>
 
@@ -250,15 +297,8 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
-            </div>
-            <div class="col-3">
-              <div class="image-container">
-                <label>
-                  <input type="radio" name="cover" value="doIt" class="coverSelect bumed busmall" />
-                  <img class="cover med small" src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/07_Public-DoIt.jpg" />
-                  <div class="bottom-right">This cover is not available in your selected size</div>
-                </label>
-              </div>
+              <div class="descBig">Activities</div>
+              <div class="descSmall">Available in: 8.5”x 11” Available in French</div>
             </div>
             <div class="col-3">
               <div class="image-container">
@@ -268,6 +308,19 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Influence</div>
+              <div class="descSmall">Available in: 8.5”x 11” and 7"x 9" Available in French 8.5”x 11” and 7"x 9"</div>
+            </div>
+            <div class="col">
+              <div class="image-container">
+                <label>
+                  <input type="radio" name="cover" value="influenceFrench" class="coverSelect bubig bumed" />
+                  <img class="cover big med" src="http://www.firstclassplanners.ca/testing/images/06_Public-P_Influence-French-Revised-01.png" />
+                  <div class="bottom-right">This cover is not available in your selected size</div>
+                </label>
+              </div>
+              <div class="descBig">Influence French</div>
+              <div class="descSmall">Available in: 8.5”x 11” and 7"x 9" Available in French 8.5”x 11” and 7"x 9"</div>
             </div>
             <div class="col-3">
               <div class="image-container">
@@ -277,6 +330,8 @@ session_start();
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
+              <div class="descBig">Be Kind</div>
+              <div class="descSmall">Available in: 8.5”x 11” and 7"x 9"</div>
             </div>
           </div>
 

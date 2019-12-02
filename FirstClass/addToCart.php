@@ -14,6 +14,7 @@ quantity=>$_POST['quantity'],
 ruler=>$_POST['ruler'],
 pocket=>$_POST['pocket'],
 cover=>$_POST['cover'],
+pgs=>$_POST['pgs'],
 total=>$_POST['total']
 );
 

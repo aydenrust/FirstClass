@@ -31,7 +31,7 @@
 </head>
 
 <body>
-	
+
 
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
@@ -58,7 +58,14 @@
 					</div>
 					<div class="container-login100-form-btn m-t-32">
 					</div>
-
+					<?php
+					if (isset($_GET['error'])) {
+						echo '<div class="container"><div class="alert alert-danger" role="alert" style="
+						text-align: center;
+					">Incorrect Login. Please Try Again
+					</div></div>';
+					}
+					?>
 				</form>
 			</div>
 		</div>

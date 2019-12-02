@@ -55,10 +55,17 @@ function recalculateCart()
 function updateQuantity(quantityInput)
 {
   /* Calculate line price */
+  var custom = 0;
   var productRow = $(quantityInput).parent().parent();
   var price = parseFloat(productRow.children('.product-price').text());
   var quantity = $(quantityInput).val();
-  var linePrice = price * quantity;
+  console.log(productRow.children('.product-image').children('img').attr('src'));
+  if (productRow.children('.product-image').children('img').attr('src') == 'customCover.PNG'){
+    custom = 275 * (quantity-1);
+  }else{
+    custom = 0;
+  }
+  var linePrice = price * quantity - custom;
   
   /* Update line price display and recalc cart totals */
   productRow.children('.product-line-price').each(function () {

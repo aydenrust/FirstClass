@@ -4,11 +4,15 @@ $(function() {
   $("#7x9").hide();
   $("#5x8").hide();
 
- // $(".big").css("opacity", "0.4");
+  // $(".big").css("opacity", "0.4");
   $(".big").addClass("greyed");
   $(".med").addClass("greyed");
   $(".small").addClass("greyed");
- // $(".med").css("opacity", "0.4");
+
+  //$(".coverSelect").class("cs1");
+  $(".coverSelect").children('img').css("opacity", 1);
+  
+  // $(".med").css("opacity", "0.4");
   //$(".small").css("opacity", "0.4");
   $(".coverSelect").attr("disabled", true);
   $(".bubig").removeAttr("disabled");
@@ -22,7 +26,7 @@ $(function() {
     $(".plannerImg").hide();
     $(".opt").show();
     $(".pgs").show();
-
+    $("#boardpgs").hide();
     $(".opt").removeAttr("selected");
 
     $(".pgs").attr("disabled", "");
@@ -74,6 +78,7 @@ $(function() {
   });
 
   $("#size").change(function() {
+    $(".coverSelect").prop("checked", false);
     // $(".pgs").show();
     //setting extra pages dropdowns to disabled by default
     $(".pgs").attr("disabled", "");
@@ -126,9 +131,8 @@ $(function() {
     }
   });
 
-  $("#customCover").click(function() {
-    if ($("#customCover").prop("checked")) {
-    }
+  $("input[type=radio][name=cover]").change(function() {
+    updateTotal(per);
   });
 
   var first;
@@ -196,7 +200,15 @@ function deselectedPgs(per) {
 }
 
 function updateTotal(per) {
-  $("#total").html((parseFloat($("#quantity").val()) * per).toFixed(2));
+  var custom = 0;
+  if ($("input[name=cover]:checked").val() == "custom") {
+    custom = 275;
+  } else {
+    custom = 0;
+  }
+  $("#total").html(
+    (parseFloat($("#quantity").val()) * per + custom).toFixed(2)
+  );
 }
 
 function showSnack() {
@@ -218,22 +230,44 @@ function addToCart() {
   var age = $("#age").val();
   var lang = $("#lang").val();
   var quantity = $("#quantity").val();
-  var ruler = false;
-  var pocket = false;
+  var ruler = "no";
+  var pocket = "no";
   var pgs = 0;
   var total = $("#total").html();
   var cover = $("input[name='cover']:checked").val();
   if ($("#ruler").is(":checked")) {
-    ruler = true;
+    ruler = "yes";
   }
   if ($("#pocket").is(":checked")) {
-    pocket = true;
+    pocket = "yes";
   }
   if ($("#xtrapgs").is(":checked")) {
     if ($("#pgsJ").is(":visible")) {
-      pgs = parseFloat($("#pgsJ").val());
+      var value = parseFloat($("#pgsJ").val());
+      switch (value) {
+        case 0.4:
+          pgs = 1;
+          break;
+        case 0.6:
+          pgs = 2;
+          break;
+      }
     } else {
-      pgs = parseFloat($("#pgsH").val());
+      var value = parseFloat($("#pgsH").val());
+      switch (value) {
+        case 0.2:
+          pgs = 3;
+          break;
+        case 0.25:
+          pgs = 4;
+          break;
+        case 0.3:
+          pgs = 5;
+          break;
+        case 0.35:
+          pgs = 6;
+          break;
+      }
     }
   }
 
@@ -257,7 +291,6 @@ function addToCart() {
 function modalCheck() {
   if ($("#pocket").is(":checked")) {
     showSnack();
-    addToCart();
   } else {
     $("#confirmModal").modal("show");
   }

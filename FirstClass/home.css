@@ -384,3 +384,12 @@ label{
 .greyed{
   opacity: 0.4;
 }
+
+.descBig{
+  text-align: center;
+}
+
+.descSmall{
+  text-align: center;
+  font-size: smaller;
+}

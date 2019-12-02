@@ -78,8 +78,14 @@ session_start();
         case kind:
           $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/05_Public-P_BeKind.jpg";
           break;
+        case influenceFrench:
+          $cover = "http://www.firstclassplanners.ca/testing/images/06_Public-P_Influence-French-Revised-01.png";
+          break;
+        case discoverFrench;
+          $cover = "http://www.firstclassplanners.ca/testing/images/02_Explore_Dream_Discover-01.png";
+          break;
         case custom:
-          $cover = "customCover.PNG";
+          $cover = "http://www.firstclassplanners.ca/testing/images/customCover.png";
           break;
       }
 
@@ -91,7 +97,27 @@ session_start();
   </div>
   <div class="product-details">
     <div class="product-title">' . $planner['lang'] . ' ' . $planner['size'] . ' ' . $planner['age'] . '</div>
-    <p class="product-description">W/ Snap in Ruler and 8 additional school Pages</p>
+    <p class="product-description">';
+      if ($planner['ruler'] == "yes") {
+        echo "- Snap in Ruler <br>";
+      }
+      if ($planner['pocket'] == "yes") {
+        echo "- Plastic Pocket <br>";
+      }
+      if ($planner['pgs'] == 1) {
+        echo "- 8 Additional School Pages";
+      } else if ($planner['pgs'] == 2) {
+        echo "- 16 Additional School Pages";
+      } else if ($planner['pgs'] == 3) {
+        echo "- 8 Additional School Pages";
+      } else if ($planner['pgs'] == 4) {
+        echo "- 16 Additional School Pages";
+      } else if ($planner['pgs'] == 5) {
+        echo "- 24 Additional School Pages";
+      } else if ($planner['pgs'] == 6) {
+        echo "- 32 Additional School Pages";
+      }
+      echo '</p>
   </div>
   <div class="product-price">' . $planner['total'] / $planner['quantity'] . '</div>
   <div class="product-quantity">
@@ -166,7 +192,7 @@ session_start();
     </div>
   </div> -->
 
-        <button class="checkout">Checkout</button>
+        <a href="confirmation.php"><button type="submit" class="checkout">Checkout</button></a>
         <a href="order.php"><button type="button" class="btn btn-primary">Add Another Planner</button></a>
 
       </div>
