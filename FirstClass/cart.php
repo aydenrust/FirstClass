@@ -120,9 +120,9 @@ session_start();
       echo '</p>
   </div>
   <div class="product-price">' . $planner['total'] / $planner['quantity'] . '</div>
-  <div class="product-quantity">
-    <input type="number" value="' . $planner['quantity'] . '" min="1">
-  </div>
+  <div class="product-quantity">' . $planner['quantity'];
+    //<input type="number" value="' . $planner['quantity'] . '" min="1">
+  echo '</div>
   <div class="product-removal">
     <button class="remove-product">
       Remove

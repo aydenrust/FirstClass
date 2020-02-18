@@ -1,5 +1,5 @@
 $(function() {
-  var per = 3.94;
+  var per = 4.84;
 
   $("#7x9").hide();
   $("#5x8").hide();
@@ -25,9 +25,11 @@ $(function() {
     .attr("class", "bottom-right-hidden");
 
   $("#age").change(function() {
-    per = 3.94;
+    per = 4.84;
     updateTotal(per);
     $(".plannerImg").hide();
+    $('#ruler').prop('checked', true);
+    $('#pocket').prop('checked', true);
     $(".opt").show();
     $(".pgs").show();
     $("#boardpgs").hide();
@@ -94,7 +96,7 @@ $(function() {
       $("#5x82").hide();
       $("#85x11").attr("selected", "");
       $("#size").change();
-      per = 1.75;
+      per = 2.65;
       updateTotal(per);
     }
   });

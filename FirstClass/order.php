@@ -115,7 +115,7 @@ session_start();
           <option value="7x9" id="7x9" class="opt">7x9 - includes 16 board pages & 8 school pages</option>
           <option value="5x8" id="5x8" class="opt">5x8 - includes 32 pages of board & school specific pages combined</option>
           <option value="7x9" id="7x92" class="opt">7x9 - NO Board Pages - includes 24 school pages</option>
-          <option value="5x8" id="5x82" class="opt">5x8 - NO Board Pages - includes 32 school pages</option>
+          <option value="5x8" id="5x82" class="opt">5x8 - NO Board Pages - 32 school pages only</option>
         </select>
       </div>
 
@@ -404,7 +404,7 @@ session_start();
           </div> -->
         </div>
       </div>
-      <div class="form-group">Total: $<a id="total">3.94</a></div>
+      <div class="form-group">Total: $<a id="total">4.84</a></div>
       <!-- <button type="button" class="btn btn-primary" id="addToCart">
           Add to Cart
         </button> -->
