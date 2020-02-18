@@ -97,3 +97,7 @@ function removeItem(removeButton)
   });
 }
 });
+
+function showModal(){
+  $("#confirmModal").modal("show");
+}

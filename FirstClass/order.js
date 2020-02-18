@@ -3,6 +3,8 @@ $(function() {
 
   $("#7x9").hide();
   $("#5x8").hide();
+  $("#7x92").hide();
+  $("#5x82").hide();
 
   // $(".big").css("opacity", "0.4");
   $(".big").addClass("greyed");
@@ -23,6 +25,8 @@ $(function() {
     .attr("class", "bottom-right-hidden");
 
   $("#age").change(function() {
+    per = 3.94;
+    updateTotal(per);
     $(".plannerImg").hide();
     $(".opt").show();
     $(".pgs").show();
@@ -46,23 +50,31 @@ $(function() {
       $("#7x9").hide();
       $("#5x8").hide();
       $("#85x11").attr("selected", "");
+      $("#french").hide();
       $("#size").change();
+ 
     } else if ($(this).val() == "Primary") {
       $("#primaryImg").show();
       $("#pgsH").hide();
       $("#7x9").hide();
       $("#5x8").hide();
+      $("#7x92").hide();
+      $("#5x82").hide();
       $("#85x11").attr("selected", "");
       $("#size").change();
     } else if ($(this).val() == "Intermediate") {
       $("#intImg").show();
       $("#pgsH").hide();
       $("#5x8").hide();
+      $("#7x92").hide();
+      $("#5x82").hide();
       $("#85x11").attr("selected", "");
       $("#size").change();
     } else if ($(this).val() == "Junior") {
       $("#juniorImg").show();
       $("#pgsH").hide();
+      $("#7x92").hide();
+      $("#5x82").hide();
       $("#5x8").hide();
       $("#85x11").attr("selected", "");
       $("#size").change();
@@ -72,8 +84,18 @@ $(function() {
       $("#board").prop("checked", true);
       $("#pgsJ").hide();
       $("#85x11").hide();
+      $("#french").hide();
       $("#7x9").attr("selected", "");
       $("#size").change();
+    } else if ($(this).val() == "Parent Teacher Handbook") {
+      $("#7x9").hide();
+      $("#pgsH").hide();
+      $("#7x92").hide();
+      $("#5x82").hide();
+      $("#85x11").attr("selected", "");
+      $("#size").change();
+      per = 1.75;
+      updateTotal(per);
     }
   });
 

@@ -1,3 +1,209 @@
+<?php
+session_start();
+ use PHPMailer\PHPMailer\PHPMailer;
+ use PHPMailer\PHPMailer\Exception;
+
+ //require "PHPMailer-master\src\PHPMailer.php";
+ //require "PHPMailer-master\src\Exception.php";
+ //require ".\PHPMailer-master\src\PHPMailer.php";
+ //require ".\PHPMailer-master\src\Exception.php";
+require $_SERVER['DOCUMENT_ROOT'] . '/peelportal/PHPMailer-master/src/PHPMailer.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/peelportal/PHPMailer-master/src/Exception.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/peelportal/FPDF/fpdf.php';
+
+class PDF extends FPDF
+{
+// Page header
+// function Header()
+// {
+//     // Logo
+//     $this->Image($_SERVER['DOCUMENT_ROOT'].'/peelportal/images/logo.gif',10,6,30);
+//     // Arial bold 15
+//     $this->SetFont('Arial','B',15);
+//     // Move to the right
+//     $this->Cell(80);
+//     // Title
+//     $this->Cell(30,10,'Title',1,0,'C');
+//     // Line break
+//     $this->Ln(20);
+// }
+
+// Page footer
+function Footer()
+{
+    // Position at 1.5 cm from bottom
+    $this->SetY(-15);
+    // Arial italic 8
+    $this->SetFont('Arial','',8);
+    // Page number
+    $this->Cell(0,10,'firstclassplanners.ca',0,0,'C');
+}
+}
+
+$pdf = new FPDF();
+$pdf->AddPage();
+$pdf->Image($_SERVER['DOCUMENT_ROOT'].'/peelportal/images/peellogo.jpg',10,6,30);
+$pdf->SetFont('helvetica','',10);
+$pdf->Cell(80,20,'Firstclassplanners.ca - 1-800-883-0705');
+$pdf->SetFont('Arial','B',16);
+$pdf->Cell(40,20,'Order for ' .$_SESSION["name"]);
+$pdf->Ln();
+$pdf->SetFont('helvetica','',10);
+$pdf->Cell(190,7,'School Details', 1, 2);
+$pdf->SetFont('helvetica', '', 10);
+$y = $pdf->GetY();
+$pdf->MultiCell(95,8,'School : ' .$_SESSION['school']."\nAddress : ".$_SESSION['Address'],"LRB", 1);
+$x = $pdf->GetX();
+$pdf->SetXY($x + 95, $y);
+$pdf->MultiCell(95,8,'Date Ordered : ' .date("Y/m/d") ."\nEmail : ".$_SESSION['email'],"LRB", 1);
+$pdf->Ln();
+$pdf->SetFont('helvetica','',10);
+$pdf->Cell(190,7,'Order Items', 1, 2);
+$pdf->SetFillColor(128,128,128);
+$pdf->Cell(42,10,"Cover",1,0,'C',1);
+$pdf->Cell(31,10,"Type",1,0,'C',1);
+$pdf->Cell(42,10,"Extras",1,0,'C',1);
+$pdf->Cell(21,10,"Price",1,0,'C',1);
+$pdf->Cell(22,10,"Quantity",1,0,'C',1);
+$pdf->Cell(32,10,"Total",1,1,'C',1);
+$pdf->SetFillColor(255,255,255);
+$pdf->SetFont('helvetica', '', 10);
+
+$totalCost = 0;
+
+foreach ($_SESSION['cart'] as $key => $planner) {
+  switch ($planner['cover']) {
+    case 'reach':
+      $cover = "Reach";
+      break;
+    case 'journey':
+      $cover = "Journey";
+      break;
+    case 'believe':
+      $cover = "Believe";
+      break;
+    case 'discover':
+      $cover = "Explore";
+      break;
+    case 'achieve':
+      $cover = "Dream";
+      break;
+    case 'geography':
+      $cover = "Geography";
+      break;
+    case 'stream':
+      $cover = "Stream";
+      break;
+    case 'reading':
+      $cover = "Reading";
+      break;
+    case 'activities':
+      $cover = "Activities";
+      break;
+    case 'doIt':
+      $cover = "Do It";
+      break;
+    case 'influence':
+      $cover = "Influence";
+      break;
+    case 'kind':
+      $cover = "Be Kind";
+      break;
+    case 'influenceFrench':
+      $cover = "Influence French";
+      break;
+    case 'discoverFrench';
+      $cover = "Discover French";
+      break;
+    case 'custom':
+      $cover = "Custom Cover";
+      break;
+  }
+  $extras = "";
+  $pgs = "N/A";
+  $ruler = "N/A";
+  $pocket = "N/A";
+  if ($planner['ruler'] == "yes") {
+    $ruler = "- Snap in Ruler\n";
+    //echo "- Snap in Ruler <br>";
+  }
+  if ($planner['pocket'] == "yes") {
+    $pocket = "- Plastic Pocket\n";
+    //echo "- Plastic Pocket <br>";
+  }
+  if ($planner['pgs'] == 1) {
+    $pgs = "- 8 Add. School Pages";
+    //echo "- 8 Additional School Pages";
+  } else if ($planner['pgs'] == 2) {
+    $pgs = "- 16 Add. School Pages";
+    //echo "- 16 Additional School Pages";
+  } else if ($planner['pgs'] == 3) {
+    $pgs = "- 8 Add. School Pages";
+    //echo "- 8 Additional School Pages";
+  } else if ($planner['pgs'] == 4) {
+    $pgs = "- 16 Add. School Pages";
+    //echo "- 16 Additional School Pages";
+  } else if ($planner['pgs'] == 5) {
+    $pgs = "- 24 Add. School Pages";
+    //echo "- 24 Additional School Pages";
+  } else if ($planner['pgs'] == 6) {
+    $pgs = "- 32 Add. School Pages";
+    //echo "- 32 Additional School Pages";
+  }
+ // $pdf->Cell(32,15,$cover,1,0,'C',1);
+  $pdf->CellFitScale(42,15,$cover,1,0,'C',1);
+$pdf->CellFitScale(31,15,$planner['lang'] . ' ' . $planner['size'] . ' ' . $planner['age'],1,0,'C',1);
+$current_y = $pdf->GetY();
+$current_x = $pdf->GetX();
+//$pdf->MultiCell(42,5,$ruler."\n".$pocket ."\n" ."$pgs","LRB", 1);
+$pdf->Cell(42,5,$ruler, 1,0,'C',1);
+$pdf->Ln();
+$pdf->SetX($current_x);
+$pdf->Cell(42,5,$pocket, 1,0,'C',1);
+$pdf->Ln();
+$pdf->SetX($current_x);
+$pdf->Cell(42,5,$pgs, 1,0,'C',1);
+$pdf->SetXY($current_x + 42, $current_y);
+$pdf->Cell(21,15,"$" .$planner['total'] / $planner['quantity'],1,0,'C',1);
+$pdf->Cell(22,15,$planner['quantity'],1,0,'C',1);
+$pdf->Cell(32,15,"$" .$planner['total'],1,1,'C',1);
+$totalCost = $totalCost + $planner['total'];
+}
+$pdf->Cell(158, 10, '',0,0,'C',1);
+$pdf->SetFillColor(0,148,197);
+$pdf->SetTextColor(255,255,255);
+$pdf->Cell(32,10,"$".$totalCost,1,2,'C',1);
+$pdf->SetTextColor(0,0,0);
+
+$pdf->SetX(0);
+$pdf->Cell(0, 8, "This is not an invoice", 0, 2, 'C');
+$pdf->Cell(0, 8, "Agendas will be delivered to the school the last week of August", 0, 2, 'C');
+$pdf->Cell(0, 8, "School Pages need to be submitted to peelplannerorders@firstclassplanners.ca by May 21, 2020", 0, 2, 'C');
+$pdf->Cell(0, 8, "School Page template can be found at firstclassplanners.ca/submit-page.php", 0, 2, 'C');
+
+// // Select Arial italic 8
+// $pdf->SetFont('Arial','I',8);
+// // Print centered page number
+// $pdf->Cell(0,10,'firstclassplanners.ca',0,0,'C');
+$pdf->Output($_SERVER['DOCUMENT_ROOT'] ."/peelportal/pdfs/" .$_SESSION["email"] ."-order.pdf", "F");
+
+$mail = new PHPMailer;
+$mail->isHTML(true);
+$mail->setFrom('No-Reply@firstclassplanners.ca', 'Order Confirmation');
+$mail->addAddress($_SESSION['email']);
+$mail->addAttachment($_SERVER['DOCUMENT_ROOT'] ."/peelportal/pdfs/" .$_SESSION["email"] ."-order.pdf");
+$mail->Subject  = $_SESSION["school"]. " Order Confirmation";
+$mail->Body     = "Attached you will find your First Class Planners order confirmation.";
+ if(!$mail->send()) {
+   echo 'Message was not sent.';
+   echo 'Mailer error: ' . $mail->ErrorInfo;
+ } else {
+   //echo 'Message has been sent.';
+   //echo "email: " .$_SESSION['email'];
+ }
+?>
+
+
 <html>
   <head>
     <link
@@ -21,7 +227,7 @@
     <div class="jumbotron text-center" style="height: 100%;">
       <h1 class="display-3">Thank You!</h1>
       <p class="lead">
-        <strong>Please check your email</strong> for an order confirmation. We will be in touch with you soon.
+        <strong>Please check your email</strong> for an order confirmation. An invoice will be sent to your school at a later date.
       </p>
       <hr />
     </div>

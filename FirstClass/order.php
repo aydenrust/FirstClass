@@ -30,10 +30,14 @@ session_start();
           if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = array();
           }
-          if (!isset($_SESSION['email'])) {
+          if ($_POST['email'] != '') {
+            $_SESSION['name'] = $_POST['name'];
             $_SESSION["email"] = $_POST["email"];
             $_SESSION["school"] = $_POST["school"];
           }
+          //if (!isset($_SESSION['email'])) {
+            echo $_SESSION['name'];
+          // }
           ?>
         </h1>
         <h2><?php echo $_SESSION["school"] ?></h2>
@@ -49,6 +53,7 @@ session_start();
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_assoc($result);
           echo $row['Address'] . "<br>" . $row['City'] . ", " . $row['Province'] . ", " . $row['Postal Code'] . "<br>" . $_SESSION["email"];
+          $_SESSION['Address'] = $row['Address'] . ", " . $row['City'] . ", " . $row['Province'] . ", " . $row['Postal Code'];
           ?>
         </h3>
       </div>
@@ -62,17 +67,17 @@ session_start();
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_primary-planners_content/planners/bigbox/2_-FIRST_PRI_WEEK.jpg" alt="" style="width:100%">
         </a>
         <a id="primaryImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/primMonth.jpg" data-fancybox="primGal" data-caption="" style="display:none"></a>
-        
-        <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/elemWeek.jpg" data-fancybo="elemGal" data-caption="" style="display:none">
+
+        <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/elemWeek.jpg" data-fancybox="elemGal" data-caption="" style="display:none">
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_elementary-planners_content/planners/bigbox/3_-FIRST_ELEM_WEEK.jpg" alt="" style="width:100%">
         </a>
-        <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/elemMonth.jpg" data-fancybo="elemGal" data-caption="" style="display:none"></a>
-        
+        <a id="juniorImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/elemMonth.jpg" data-fancybox="elemGal" data-caption="" style="display:none"></a>
+
         <a id="intImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/intWeek.jpg" data-fancybox="intGal" data-caption="" style="display:none">
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_middle-planners_content/planners/bigbox/4_-FIRST_MID_WEEK.jpg" alt="" style="width:100%">
         </a>
         <a id="intImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/intMonth.jpg" data-fancybox="intGal" data-caption="" style="display:none"></a>
-        
+
         <a id="highImg" class="plannerImg" href="http://www.firstclassplanners.ca/testing/images/examples/highWeek.jpg" data-fancybox="highGal" data-caption="" style="display:none">
           <img class="shadow" src="http://www.firstclassplanners.ca/sg_high-planners_content/planners/bigbox/5_-FIRST_HIGH_WEEK.jpg" alt="" style="width:100%">
         </a>
@@ -100,6 +105,7 @@ session_start();
           <option value="Junior" id="junior">Junior</option>
           <option value="Intermediate" id="intermediate" class="opt">Intermediate</option>
           <option value="High" id="high" class="opt">High</option>
+          <option value="Parent Teacher Handbook" id="hand" class="opt">Parent Teacher Handbook</option>
         </select>
       </div>
       <div class="form-group">
@@ -108,6 +114,8 @@ session_start();
           <option value="8.5x11" id="85x11" class="opt">8.5x11 - includes 16 board pages & 8 school pages</option>
           <option value="7x9" id="7x9" class="opt">7x9 - includes 16 board pages & 8 school pages</option>
           <option value="5x8" id="5x8" class="opt">5x8 - includes 32 pages of board & school specific pages combined</option>
+          <option value="7x9" id="7x92" class="opt">7x9 - NO Board Pages - includes 24 school pages</option>
+          <option value="5x8" id="5x82" class="opt">5x8 - NO Board Pages - includes 32 school pages</option>
         </select>
       </div>
 
@@ -115,7 +123,7 @@ session_start();
         <label for="lang">Select Language</label>
         <select class="form-control field" id="lang">
           <option value="English" id="english" class="opt">English</option>
-          <option value="French" id="french" class="opt">French</option>
+          <option value="French" id="french" class="opt" style="display:none">French</option>
         </select>
       </div>
       <div class="form-group">
@@ -123,13 +131,13 @@ session_start();
         <input type="number" min="1" class="form-control field check" value="1" id="quantity" />
       </div>
       <div class="form-check">
-        <input class="form-check-input check checkBox" type="checkbox" value="0.25" id="ruler" />
+        <input class="form-check-input check checkBox" type="checkbox" value="0.25" id="ruler" checked/>
         <label class="form-check-label" for="ruler">
           Snap in Ruler - $0.25
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input check checkBox" type="checkbox" value="0.65" id="pocket" />
+        <input class="form-check-input check checkBox" type="checkbox" value="0.65" id="pocket" checked/>
         <label class="form-check-label" for="pocket">
           Plastic Pocket - $0.65
         </label>
@@ -166,12 +174,7 @@ session_start();
           </select> -->
         <div class="container">
           <h2>Select Cover</h2>
-          <div class="form-check">
-            <input class="form-check-input check" type="radio" value="custom" id="customCover" name="cover" required />
-            <label class="form-check-label" for="customCover">
-              Custom Cover - $275 per order
-            </label>
-          </div>
+            Standard cover choices included in cost
           <div class="row">
             <div class="col">
               <div class="image-container">
@@ -221,7 +224,7 @@ session_start();
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="discoverFrench" class="coverSelect bubig bumed" />
-                  <img class="cover big med" src="http://www.firstclassplanners.ca/testing/images/02_Explore_Dream_Discover-01.png" />
+                  <img class="cover big med" src="http://www.firstclassplanners.ca/peelportal/images/Explorer-New.png" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
@@ -229,7 +232,6 @@ session_start();
               <div class="descSmall">Available in: 8.5”x 11” and 7"x 9" Available in French 8.5”x 11” and 7"x 9"</div>
             </div>
           </div>
-
           <div class="row">
             <div class="col">
               <div class="image-container">
@@ -315,7 +317,7 @@ session_start();
               <div class="image-container">
                 <label>
                   <input type="radio" name="cover" value="influenceFrench" class="coverSelect bubig bumed" />
-                  <img class="cover big med" src="http://www.firstclassplanners.ca/testing/images/06_Public-P_Influence-French-Revised-01.png" />
+                  <img class="cover big med" src="http://www.firstclassplanners.ca/peelportal/images/Influencer-New.png" />
                   <div class="bottom-right">This cover is not available in your selected size</div>
                 </label>
               </div>
@@ -333,6 +335,12 @@ session_start();
               <div class="descBig">Be Kind</div>
               <div class="descSmall">Available in: 8.5”x 11” and 7"x 9"</div>
             </div>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input check" type="radio" value="custom" id="customCover" name="cover" />
+            <label class="form-check-label" for="customCover">
+              Custom Cover - $275 per order
+            </label>
           </div>
 
           <!-- <div class="row">

@@ -99,10 +99,10 @@ session_start();
     <div class="product-title">' . $planner['lang'] . ' ' . $planner['size'] . ' ' . $planner['age'] . '</div>
     <p class="product-description">';
       if ($planner['ruler'] == "yes") {
-        echo "- Snap in Ruler <br>";
+        echo "- Snap in Ruler - $0.25 <br>";
       }
       if ($planner['pocket'] == "yes") {
-        echo "- Plastic Pocket <br>";
+        echo "- Plastic Pocket - $0.65 <br>";
       }
       if ($planner['pgs'] == 1) {
         echo "- 8 Additional School Pages";
@@ -133,7 +133,7 @@ session_start();
     }
     ?>
 
-      <!-- <div class="product">
+    <!-- <div class="product">
     <div class="product-image">
       <img src="http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ReachForTheStars.jpg">
     </div>
@@ -173,12 +173,12 @@ session_start();
     <div class="product-line-price">45.40</div>
   </div> -->
 
-      <div class="totals">
-        <div class="totals-item">
-          <label>Subtotal</label>
-          <div class="totals-value" id="cart-subtotal">0.00</div>
-        </div>
-        <!--<div class="totals-item">
+    <div class="totals">
+      <div class="totals-item">
+        <label>Subtotal</label>
+        <div class="totals-value" id="cart-subtotal">0.00</div>
+      </div>
+      <!--<div class="totals-item">
       <label>Tax (5%)</label>
       <div class="totals-value" id="cart-tax">3.60</div>
     </div>
@@ -191,11 +191,39 @@ session_start();
       <div class="totals-value" id="cart-total">90.57</div>
     </div>
   </div> -->
-
-        <a href="confirmation.php"><button type="submit" class="checkout">Checkout</button></a>
-        <a href="order.php"><button type="button" class="btn btn-primary">Add Another Planner</button></a>
-
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Are you sure?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Are you sure you want to place your order?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Go Back!
+            </button>
+            <a href="confirmation.php"><button type="submit" class="btn btn-primary" aria-label="Close">
+                Yes.
+              </button></a>
+          </div>
+        </div>
       </div>
+    </div>
+      <!--<a href="confirmation.php"> -->
+      <button type="button" onclick="showModal()" class="checkout">Checkout</button>
+      <!--</a> -->
+      <a href="order.php"><button type="button" class="btn btn-primary">Add Another Planner</button></a>
+      <div>Please note: Orders over $5000 require a PO from your school.</div>
+    </div>
+
+
 </body>
 
 </html>

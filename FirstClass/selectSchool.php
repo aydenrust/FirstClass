@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(($_POST['username'] != "PeelDSB")){
-    header("Location: http://www.firstclassplanners.ca/testing/index.php?error");
-} else if(($_POST['pass'] != "Pe=1D\$b")){
-    header("Location: http://www.firstclassplanners.ca/testing/index.php?error");
-} 
+if (($_POST['username'] != "PeelDSB")) {
+    header("Location: http://www.firstclassplanners.ca/peelportal/index.php?error");
+} else if (($_POST['pass'] != "Pe=1D\$b")) {
+    header("Location: http://www.firstclassplanners.ca/peelportal/index.php?error");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,10 +80,13 @@ if(($_POST['username'] != "PeelDSB")){
                                 ?>
                             </select>
                         </div>
-
+                        <div class="wrap-input100 validate-input" data-validate="Contact Name">
+                            <input class="input100" type="text" name="name" placeholder="Contact Name">
+                            <span class="focus-input100" data-placeholder="⚇"></span>
+                        </div>
                         <div class="wrap-input100 validate-input" data-validate="Enter email">
                             <input class="input100" type="email" name="email" placeholder="Enter Email">
-                            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                            <span class="focus-input100" data-placeholder="&#x2709"></span>
                         </div>
 
                         <div class="container-login100-form-btn m-t-32">
