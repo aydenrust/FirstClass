@@ -265,7 +265,7 @@ $pdf->SetX($X);
 $pdf->Cell(160, 10, '',"T",0,'C',1);
 $pdf->SetFillColor(0,148,197);
 $pdf->SetTextColor(255,255,255);
-$pdf->Cell(30,10,"$".$totalCost,1,2,'C',1);
+$pdf->Cell(30,10,"$".number_format ($totalCost, $decimals = 2),1,2,'R',1);
 $pdf->SetTextColor(0,0,0);
 
 $pdf->SetX(0);
