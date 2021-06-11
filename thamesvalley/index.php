@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Login V16</title>
+	<title>Thames Valley Login</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					First Class Peel Portal
+					 Thames Valley Ordering Portal
 				</span>
 				<form action="selectSchool.php" method="post" class="login100-form validate-form p-b-33 p-t-5">
 

@@ -1,16 +1,16 @@
 <?php
 session_start();
-if (($_POST['username'] != "PeelDSB")) {
-    header("Location: http://www.firstclassplanners.ca/peelportal/index.php?error");
-} else if (($_POST['pass'] != "Pe=1D\$b")) {
-    header("Location: http://www.firstclassplanners.ca/peelportal/index.php?error");
+if (($_POST['username'] != "ThamesDSB")) {
+    header("Location: http://www.firstclassplanners.ca/thamesvalley/index.php?error");
+} else if (($_POST['pass'] != "TH@m=s")) {
+    header("Location: http://www.firstclassplanners.ca/thamesvalley/index.php?error");
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Login V16</title>
+    <title>Select School</title>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,7 +44,7 @@ if (($_POST['username'] != "PeelDSB")) {
         <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
             <div class="wrap-login100 p-t-30 p-b-50">
                 <span class="login100-form-title p-b-41">
-                    First Class Peel Portal
+                    Thames Valley Portal
                 </span>
                 <form action="order.php" method="post" class="login100-form validate-form p-b-33 p-t-5">
                     <div class="container">
@@ -66,7 +66,7 @@ if (($_POST['username'] != "PeelDSB")) {
                                     die("Connection failed: " . mysqli_connect_error());
                                 }
 
-                                $sql = "SELECT School_name FROM Schools";
+                                $sql = "SELECT School_name FROM thamesvalley ORDER BY School_name";
                                 $result = mysqli_query($conn, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {

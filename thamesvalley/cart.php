@@ -10,7 +10,7 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Thames Valley Cart</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link href="home.css" rel="stylesheet">
   <script src="cart.js"></script>
@@ -39,53 +39,58 @@ session_start();
     </div>
 
     <?php
-
+    if(empty($_SESSION['cart'])){
+      echo "This cart is empty";
+    }
     foreach ($_SESSION['cart'] as $key => $planner) {
       switch ($planner['cover']) {
         case reach:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ReachForTheStars.jpg";
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/Reach.jpg";
           break;
-        case journey:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Journey.jpg";
+        case inspire:
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/Inspire.jpg";
           break;
-        case believe:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/Believe.jpg";
+        case courage:
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/Courage.jpg";
           break;
-        case discover:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/ExploreDreamDiscover.jpg";
+        case change:
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/Change.jpg";
           break;
         case achieve:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/DreamPlanAchieve.jpg";
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/12/Achieve_English.jpg";
           break;
-        case geography:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/CanadianGeography.jpg";
-          break;
-        case stream:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/2_Stream.jpg";
-          break;
-        case reading:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/1_Reading.jpg";
-          break;
-        case activities:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/08_Public-P_Activities.jpg";
+        case achievefrench:
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/French-Achieve.jpg";
           break;
         case doIt:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/07_Public-DoIt.jpg";
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/DoIt.jpg";
+          break;
+        case landscapes:
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/Landscapes.jpg";
+          break;
+        case stream:
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/Stream.jpg";
+          break;
+        case activities:
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/08_Public-P_Activities-1.jpg";
           break;
         case influence:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/06_Public-P_Influence.jpg";
-          break;
-        case kind:
-          $cover = "http://www.firstclassplanners.ca/sg_covers_content/covers/thumbnail/05_Public-P_BeKind.jpg";
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/Influence.jpg";
           break;
         case influenceFrench:
-          $cover = "http://www.firstclassplanners.ca/testing/images/06_Public-P_Influence-French-Revised-01.png";
+          $cover = "http://www.firstclassplanners.ca/peelportal/images/Influencer-New.png";
           break;
-        case discoverFrench;
-          $cover = "http://www.firstclassplanners.ca/testing/images/02_Explore_Dream_Discover-01.png";
+        case kind:
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/jo3qN5eA.jpeg";
+          break;
+        case adventure;
+          $cover = "https://www.firstclassplanners.ca/wp-content/uploads/2020/11/Adventure.jpg";
           break;
         case custom:
-          $cover = "http://www.firstclassplanners.ca/testing/images/customCover.png";
+          $cover = "https://www.firstclassplanners.ca/peelportal/images/customCover.png";
+          break;
+        case teacher:
+          $cover = "https://www.firstclassplanners.ca/peelportal/images/TeacherCover.png";
           break;
       }
 
@@ -98,37 +103,37 @@ session_start();
   <div class="product-details">
     <div class="product-title">' . $planner['lang'] . ' ' . $planner['size'] . ' ' . $planner['age'] . '</div>
     <p class="product-description">';
+    echo "- " .$planner['schoolboardpgs'] .'<br>';
       if ($planner['ruler'] == "yes") {
         echo "- Snap in Ruler - $0.25 <br>";
       }
       if ($planner['pocket'] == "yes") {
         echo "- Plastic Pocket - $0.65 <br>";
       }
-      if ($planner['pgs'] == 1) {
-        echo "- 8 Additional School Pages";
-      } else if ($planner['pgs'] == 2) {
-        echo "- 16 Additional School Pages";
-      } else if ($planner['pgs'] == 3) {
-        echo "- 8 Additional School Pages";
-      } else if ($planner['pgs'] == 4) {
-        echo "- 16 Additional School Pages";
-      } else if ($planner['pgs'] == 5) {
-        echo "- 24 Additional School Pages";
-      } else if ($planner['pgs'] == 6) {
-        echo "- 32 Additional School Pages";
+      if ($planner['bully'] == "yes") {
+        echo "- Anti-Bully - $0.65 <br>";
+      }
+      if ($planner['green'] == "yes") {
+        echo "- Going Green - $0.65 <br>";
+      }
+      if ($planner['nutrition'] == "yes") {
+        echo "- Nutrition - $0.65 <br>";
+      }
+      if ($planner['pgs'] != 0) {
+        echo "- " .$planner['pgs'] ." Additional School Pages";
       }
       echo '</p>
   </div>
-  <div class="product-price">' . $planner['total'] / $planner['quantity'] . '</div>
-  <div class="product-quantity">' . $planner['quantity'];
-    //<input type="number" value="' . $planner['quantity'] . '" min="1">
+  <div class="product-price">' . number_format ($planner['total'] / $planner['quantity'] , $decimals = 2  ). '</div>
+  <div class="product-quantity">'
+    .'<input type="number" value="' . $planner['quantity'] . '" min="1">';
   echo '</div>
   <div class="product-removal">
     <button class="remove-product">
       Remove
     </button>
   </div>
-  <div class="product-line-price">' . $planner['total'] . '</div>
+  <div class="product-line-price">' . number_format ($planner['total'] , $decimals = 2  ). '</div>
 </div>';
     }
     ?>
@@ -220,7 +225,7 @@ session_start();
       <button type="button" onclick="showModal()" class="checkout">Checkout</button>
       <!--</a> -->
       <a href="order.php"><button type="button" class="btn btn-primary">Add Another Planner</button></a>
-      <div>Please note: Orders over $5000 require a PO from your school.</div>
+      PDF Order Confirmation will contain all order details</div>
     </div>
 
 
