@@ -45,7 +45,7 @@ session_start();
             $_SESSION["school"] = $_POST["school"];
           }
           //if (!isset($_SESSION['email'])) {
-          echo $_SESSION['name'];
+          //echo $_SESSION['name'];
           // }
           ?>
         </h1>
