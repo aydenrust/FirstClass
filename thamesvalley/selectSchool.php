@@ -1,8 +1,8 @@
 <?php
 session_start();
-if (($_POST['username'] != "ThamesDSB")) {
+if (($_POST['username'] != "User")) {
     header("Location: http://www.firstclassplanners.ca/thamesvalley/index.php?error");
-} else if (($_POST['pass'] != "TH@m=s")) {
+} else if (($_POST['pass'] != "Pass")) {
     header("Location: http://www.firstclassplanners.ca/thamesvalley/index.php?error");
 }
 ?>
